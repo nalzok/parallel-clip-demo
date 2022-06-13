@@ -46,7 +46,7 @@ Note that there could be some fluctuations some I did not average the execution 
 ## Issues
 
 The training accuracy looks reasonable, but somehow the test acuracy is terrible.
-Maybe it's because CLIP are not familiar with tiny images of size 28x28, but there could be other issues.
+Maybe it's because CLIP are not familiar with tiny black-and-white images of size 28x28, but there could be other issues.
 
 ```
 # Training
@@ -66,6 +66,7 @@ Epoch #13, Epoch average loss = 0.015, Epoch average accuracy = 0.997
 Epoch #14, Epoch average loss = 0.017, Epoch average accuracy = 0.996
 Epoch #15, Epoch average loss = 0.008, Epoch average accuracy = 0.999
 Epoch #16, Epoch average loss = 0.015, Epoch average accuracy = 0.997
+
 # Testing
 Accuracy: 0.0976
 ```
