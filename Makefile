@@ -1,8 +1,5 @@
 .PHONY: all clean
 
-MKL_NUM_THREADS := 2
-PROCESSES := 48
-
 all: data/t10k_predictions.npy
 
 data/t10k_predictions.npy: checkpoints/checkpoint_16 data/t10k_embeddings.npy data/t10k_labels.npy
@@ -20,16 +17,14 @@ checkpoints/checkpoint_16: data/train_embeddings.npy data/train_labels.npy
 		--ckpt_out checkpoints
 
 data/train_embeddings.npy: data/train_images.npy
-	MKL_NUM_THREADS=$(MKL_NUM_THREADS) pipenv run python3 scripts/apply_clip_to_images.py \
+	pipenv run python3 scripts/apply_clip_to_images.py \
 		--image_in data/train_images.npy \
-		--embedding_out data/train_embeddings.npy \
-		--processes $(PROCESSES)
+		--embedding_out data/train_embeddings.npy
 
 data/t10k_embeddings.npy: data/t10k_images.npy
-	MKL_NUM_THREADS=$(MKL_NUM_THREADS) pipenv run python3 scripts/apply_clip_to_images.py \
+	pipenv run python3 scripts/apply_clip_to_images.py \
 		--image_in data/t10k_images.npy \
-		--embedding_out data/t10k_embeddings.npy \
-		--processes $(PROCESSES)
+		--embedding_out data/t10k_embeddings.npy
 
 data/train_images.npy data/train_labels.npy data/t10k_images.npy data/t10k_labels.npy:
 	mkdir -p data

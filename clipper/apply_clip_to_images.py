@@ -9,8 +9,9 @@ import clip
 @click.command()
 @click.option('--image_in', type=click.File('rb'))
 @click.option('--embedding_out', type=click.File('wb'))
-@click.option('--processes', type=int)
-def clipper(image_in, embedding_out, processes):
+@click.option('--processes', type=int, default=mp.cpu_count() // 2)
+@click.option('--mkl_threads', type=int, default=2)
+def extractor(image_in, embedding_out, processes):
     # load model in the master process first to avoid downloading
     # the model from multiple processes in parallel
     _, preprocess = clip.load('ViT-B/32', device='cpu')
@@ -41,4 +42,4 @@ def extract_feature(image):
 
 if __name__ == '__main__':
     mp.set_start_method('forkserver')
-    clipper()
+    extractor()

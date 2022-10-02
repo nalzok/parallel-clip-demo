@@ -25,6 +25,14 @@ Run `make .venv` to install the dependencies with [Pipenv](https://pipenv.pypa.i
 
 `make`.
 
+
+You can also list the commands to be executed by doing a dry run with `make -n`.
+For example,
+
+
+```
+```
+
 ## Parallelism
 
 It turns out that PyTorch calls [ATen](https://pytorch.org/cppdocs/#aten) under the hood, which links against [oneDNN](https://github.com/oneapi-src/oneDNN), which does multi-threaded calculation by default.
